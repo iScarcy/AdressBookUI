@@ -1,1 +1,11 @@
-<p>adressbook works!</p>
+<mat-card style="min-height: 500px;">
+    <mat-card-header>
+        <h1>Contatti</h1>
+        <button mat-raised-button color="primary" style="margin-left: 70%">Nuovo Contatto</button>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="this.contactsList">
+
+        </table>
+    </mat-card-content>
+</mat-card>

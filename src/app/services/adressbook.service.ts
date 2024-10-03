@@ -12,7 +12,7 @@ export class AdressbookService {
   constructor(private _httpClient: HttpClient) { }
 
   getAdressBook():Observable<IContact[]>{
-    return this._httpClient.get<Array<IContact>>(baseAdressBookApiUrl).pipe(
+    return this._httpClient.get<Array<IContact>>(baseAdressBookApiUrl+"AdressBook").pipe(
       map(people => people.map(person => ({
         
         id: person.id, 
