@@ -1,0 +1,1 @@
+export const baseAdressBookApiUrl:string = "http://localhost:5023/";
