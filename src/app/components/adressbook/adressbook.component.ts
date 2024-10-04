@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { IContact } from 'src/app/interfaces/IContact';
@@ -17,12 +19,18 @@ export class AdressbookComponent implements OnInit{
   contactsList!: IContact[];
   displayedColums: string[] = ["nome", "cognome", "dataNascita","action"]
   datasource:any;
+  @ViewChild(MatPaginator) paginator!:MatPaginator;
+  @ViewChild(MatSort) sort!:MatSort;
+
   ngOnInit(): void {
     this.store.dispatch(loadcontacts());
     this.store.select(getcontactslist).subscribe(list =>{
       this.contactsList = list;
       console.log( this.contactsList);
       this.datasource = new MatTableDataSource<IContact>(this.contactsList);
+
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
     });
   }
 
