@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 
 import { IContact } from 'src/app/interfaces/IContact';
 import { MaterialModule } from 'src/app/shared/material.module';
@@ -10,6 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { DialogData } from 'src/app/interfaces/IDialogData';
 
 @Component({
   selector: 'app-adressbook-dialog',
@@ -30,6 +31,12 @@ import { MatDatepickerIntl } from '@angular/material/datepicker';
 })
 export class AdressbookDialogComponent implements OnInit, OnDestroy  {
  
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialogRef: MatDialogRef<AdressbookDialogComponent>
+  ){ 
+      console.log(this.data.id);
+  }
   contatto:IContact | undefined = {
     id: '',
     nome: '',

@@ -5,9 +5,6 @@
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
       <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15">        
-      @if (FC_nome.invalid) {
-        <mat-error>{{getErrorMessage()}}</mat-error>
-      }
      
     </mat-form-field>
     <mat-form-field appearance="fill">

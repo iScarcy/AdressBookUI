@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./adressbook.state";
-import { loadcontacts, loadcontactsfail, loadcontactssuccess } from "./adressbook.actions";
+import { loadcontactdetail, loadcontacts, loadcontactsfail, loadcontactssuccess } from "./adressbook.actions";
 
 const _adressbookReducer = createReducer(
     initialState,
