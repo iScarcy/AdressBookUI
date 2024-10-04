@@ -2,7 +2,6 @@ import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { AdreessbookItemComponent } from './components/adressbook/adreessbook-item/adreessbook-item.component';
 import { AdressbookComponent } from './components/adressbook/adressbook.component';
 import { MaterialModule } from './shared/material.module';
 import { StoreModule } from '@ngrx/store';
@@ -16,8 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdreessbookItemComponent,
+    AppComponent,   
     AdressbookComponent   
   ],
   imports: [
