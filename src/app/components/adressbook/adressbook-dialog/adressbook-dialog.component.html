@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Aggiungi nuovo contatto</h2>
+
+<mat-dialog-content>
+  <div class="dialog-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15">        
+      @if (FC_nome.invalid) {
+        <mat-error>{{getErrorMessage()}}</mat-error>
+      }
+     
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input matInput [(ngModel)] = "contatto!.cognome" >     
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Data di Nascita</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)] = "contatto!.dataNascita">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Luogo di Nascita</mat-label>
+      <input matInput [(ngModel)] = "contatto!.luogoNascita" >
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)] = "contatto!.email" >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Sesso</mat-label>
+      <mat-select [(ngModel)] = "contatto!.sesso">
+        <mat-option value="F">Femmina</mat-option>
+        <mat-option value="M">Maschio</mat-option>
+        <mat-option value="A">Altro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Telefono</mat-label>
+      <input matInput [(ngModel)] = "contatto!.tel" >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cellulare</mat-label>
+      <input matInput [(ngModel)] = "contatto!.cell" >
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button color="primary" (click)="save()">
+    <mat-icon>save</mat-icon>Salva
+  </button>
+  <button mat-button color="primary" (click)="dismiss()">
+    <mat-icon>cancel</mat-icon>Annulla
+  </button>
+</mat-dialog-actions>

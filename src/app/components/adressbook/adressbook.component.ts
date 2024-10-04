@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { IContact } from 'src/app/interfaces/IContact';
 import { loadcontacts } from 'src/app/shared/store/adressbook.actions';
 import { getcontactslist } from 'src/app/shared/store/adressbook.selectors';
+import { AdressbookDialogComponent } from './adressbook-dialog/adressbook-dialog.component';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-adressbook',
@@ -14,7 +16,9 @@ import { getcontactslist } from 'src/app/shared/store/adressbook.selectors';
 })
 export class AdressbookComponent implements OnInit{
   
-  constructor(private store: Store){}
+  constructor(private store: Store,
+    private dialog: MatDialog,
+  ){}
   
   contactsList!: IContact[];
   displayedColums: string[] = ["nome", "cognome", "dataNascita","action"]
@@ -34,4 +38,16 @@ export class AdressbookComponent implements OnInit{
     });
   }
 
+  openDetailDialog(id:string):void{
+     
+    let config: MatDialogConfig = {
+        panelClass: "dialog-responsive",
+        disableClose: true,
+        data: {id:id}
+       // data: {message: "Confermi la creazione di un nuovo onomastico ?", callback: () => this.save()}    
+      }
+      
+      let dialogRef = this.dialog.open(AdressbookDialogComponent, config); 
+        
+  }
 }
