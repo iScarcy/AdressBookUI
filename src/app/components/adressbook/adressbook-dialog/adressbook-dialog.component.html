@@ -4,7 +4,7 @@
   <div class="dialog-container">
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
-      <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15">        
+      <input matInput [formControl] = "FC_nome" required minlength="4" maxlength="15" [(ngModel)] = "contatto!.nome" >        
      
     </mat-form-field>
     <mat-form-field appearance="fill">

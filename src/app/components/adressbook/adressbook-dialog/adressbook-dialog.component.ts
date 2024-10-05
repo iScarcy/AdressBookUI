@@ -11,6 +11,8 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { DialogData } from 'src/app/interfaces/IDialogData';
+import { Store } from '@ngrx/store';
+import { getcontact } from 'src/app/shared/store/adressbook.selectors';
 
 @Component({
   selector: 'app-adressbook-dialog',
@@ -30,13 +32,6 @@ import { DialogData } from 'src/app/interfaces/IDialogData';
   styleUrls: ['./adressbook-dialog.component.css']
 })
 export class AdressbookDialogComponent implements OnInit, OnDestroy  {
- 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public dialogRef: MatDialogRef<AdressbookDialogComponent>
-  ){ 
-      console.log(this.data.id);
-  }
   contatto:IContact | undefined = {
     id: '',
     nome: '',
@@ -48,6 +43,17 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
     tel: '',
     cell: '',
   };
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialogRef: MatDialogRef<AdressbookDialogComponent>,
+    private store: Store
+  ){ 
+    this.store.select(getcontact(this.data.id)).subscribe(element => {
+     this.contatto = element;
+  })
+  }
+
 
   FC_nome = new FormControl('', [
     Validators.required,

@@ -1,1 +1,1 @@
-export const baseAdressBookApiUrl:string = "http://localhost:5023/";
+export const baseAdressBookApiUrl:string = "http://scarcydev:5023/";

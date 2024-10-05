@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { IContact } from 'src/app/interfaces/IContact';
 import { loadcontacts } from 'src/app/shared/store/adressbook.actions';
-import { getcontactslist } from 'src/app/shared/store/adressbook.selectors';
+import { getcontact, getcontactslist } from 'src/app/shared/store/adressbook.selectors';
 import { AdressbookDialogComponent } from './adressbook-dialog/adressbook-dialog.component';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
@@ -21,6 +21,7 @@ export class AdressbookComponent implements OnInit{
   ){}
   
   contactsList!: IContact[];
+ 
   displayedColums: string[] = ["nome", "cognome", "dataNascita","action"]
   datasource:any;
   @ViewChild(MatPaginator) paginator!:MatPaginator;
@@ -39,6 +40,9 @@ export class AdressbookComponent implements OnInit{
   }
 
   openDetailDialog(id:string):void{
+    
+    
+   
      
     let config: MatDialogConfig = {
         panelClass: "dialog-responsive",
