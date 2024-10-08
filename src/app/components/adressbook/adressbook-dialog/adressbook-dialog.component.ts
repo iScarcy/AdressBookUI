@@ -98,6 +98,7 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
     if(this.FC_nome.valid ){
 
         console.log("data.id:" + this.data.id);
+        
         if(this.data.id!="")
           console.log("salvo")
         else 
