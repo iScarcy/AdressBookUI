@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IContact } from '../interfaces/IContact';
 import { baseAdressBookApiUrl } from '../app.constant';
 import { map, Observable } from 'rxjs';
+import { IContactRef } from '../interfaces/IContactRef';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +28,27 @@ export class AdressbookService {
 
       })))
     );
+  }
+
+  newContact(contatto: IContact):Observable<IContact>{
+      
+    console.log(contatto);
+      let adressBookServiceUrl: string = `${baseAdressBookApiUrl}AdressBook`;
+      return  this._httpClient
+          .post<IContactRef>(adressBookServiceUrl, contatto).pipe(
+            map(contact => ({
+              id: contact.ObjID, 
+              nome: contatto.nome, 
+              cognome: contatto.cognome, 
+              dataNascita: contatto.dataNascita,        
+              luogoNascita:contatto.luogoNascita,
+              email:contatto.email,
+              sesso:contatto.sesso,
+              tel:contatto.tel,
+              cell:contatto.cell
+            }))
+          );
+
+        
   }
 }

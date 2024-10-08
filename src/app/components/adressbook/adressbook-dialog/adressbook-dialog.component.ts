@@ -49,9 +49,11 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
     public dialogRef: MatDialogRef<AdressbookDialogComponent>,
     private store: Store
   ){ 
-    this.store.select(getcontact(this.data.id)).subscribe(element => {
-     this.contatto = element;
-  })
+    if(this.data.id!=''){
+        this.store.select(getcontact(this.data.id)).subscribe(element => {
+          this.contatto = element;    
+        })
+    }
   }
 
 
@@ -69,10 +71,10 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+   
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   getErrorMessage(): string {
@@ -92,10 +94,18 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   }
 
   save():void{
+    
+    if(this.FC_nome.valid ){
 
+        console.log("data.id:" + this.data.id);
+        if(this.data.id!="")
+          console.log("salvo")
+        else 
+          console.log("inserisco")
+      }
   }
 
   dismiss():void{
-
+    this.dialogRef.close();
   }
 }

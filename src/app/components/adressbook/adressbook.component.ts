@@ -29,6 +29,7 @@ export class AdressbookComponent implements OnInit{
 
   ngOnInit(): void {
     this.store.dispatch(loadcontacts());
+    
     this.store.select(getcontactslist).subscribe(list =>{
       this.contactsList = list;
       console.log( this.contactsList);
