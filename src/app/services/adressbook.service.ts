@@ -31,8 +31,7 @@ export class AdressbookService {
   }
 
   newContact(contatto: IContact):Observable<IContact>{
-      
-    console.log(contatto);
+    
       let adressBookServiceUrl: string = `${baseAdressBookApiUrl}AdressBook`;
       return  this._httpClient
           .post<IContactResponse>(adressBookServiceUrl, contatto).pipe(
@@ -50,5 +49,25 @@ export class AdressbookService {
           );
 
         
+  }
+
+  editContact(contatto: IContact):Observable<IContact>{
+
+    let adressBookServiceUrl: string = `${baseAdressBookApiUrl}AdressBook`;
+    return  this._httpClient
+        .patch(adressBookServiceUrl, contatto).pipe(
+          map(contact => ({
+            id: contatto.id, 
+            nome: contatto.nome, 
+            cognome: contatto.cognome, 
+            dataNascita: contatto.dataNascita,        
+            luogoNascita:contatto.luogoNascita,
+            email:contatto.email,
+            sesso:contatto.sesso,
+            tel:contatto.tel,
+            cell:contatto.cell
+          }))
+        );
+
   }
 }

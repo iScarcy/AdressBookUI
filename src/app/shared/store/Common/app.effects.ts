@@ -26,6 +26,7 @@ export class AppEffects {
      );
 
     showsnackbar(message: string, resulttype: string = 'fail'){
+        console.log("--->"+resulttype)
         let _class=resulttype == 'pass'? 'green-snackbar': 'red-snackbar'
         return this._snackbar.open(message, 'OK', {
             verticalPosition: 'top',

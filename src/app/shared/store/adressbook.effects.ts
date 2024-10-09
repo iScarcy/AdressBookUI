@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects"; 
 import { AdressbookService } from "src/app/services/adressbook.service";
-import { LOAD_CONTACTS, loadcontacts, loadcontactsfail, loadcontactssuccess, NEW_CONTACT, newcontact, newcontactfail, newcontactsucess } from "./adressbook.actions";
+import { editcontact, editcontactsucess, LOAD_CONTACTS, loadcontacts, loadcontactsfail, loadcontactssuccess, NEW_CONTACT, newcontact, newcontactfail, newcontactsucess } from "./adressbook.actions";
 import { catchError, exhaustMap, map, of, switchMap } from "rxjs";
 import { IContact } from "src/app/interfaces/IContact";
 import { IContactRequest } from "src/app/interfaces/IContactRequest";
@@ -41,14 +41,39 @@ export class AdressbookEffects {
                 cell:action.contact.cell}).pipe(
                 switchMap((data) => {
                     return of(newcontactsucess({contact: data}),
-                    showalert({message:'Crerate success',resulttype: 'pass'}))
+                    showalert({message:'Create success',resulttype: 'pass'}))
                 }),
-                catchError((_error)=>of(showalert({message:'Faild to crerate new contact',resulttype: 'fail'})))
+                catchError((_error)=>of(showalert({message:'Faild to create new contact',resulttype: 'fail'})))
             );
             })
         )
-        );      
-          
+    );      
+    
+    editConcact$ = createEffect(() => 
+        this.action$.pipe(
+            ofType(editcontact),
+            switchMap((action:IContactRequest) => {
+             
+                return this.addressbookService.editContact({ 
+                    id: action.contact.id, 
+                    nome: action.contact.nome, 
+                    cognome: action.contact.cognome, 
+                    dataNascita: action.contact.dataNascita,        
+                    luogoNascita:action.contact.luogoNascita,
+                    email:action.contact.email,
+                    sesso:action.contact.sesso,
+                    tel:action.contact.tel,
+                    cell:action.contact.cell}).pipe(
+                    switchMap((data) => {
+                        return of(editcontactsucess({contact: data}),
+                        showalert({message:'Update success',resulttype: 'pass'}))
+                    }),
+                    catchError((_error)=>of(showalert({message:'Faild to update contact',resulttype: 'fail'})))
+                );
+                })
+            )
+        ); 
+    
     constructor(
         private action$: Actions,
         private addressbookService: AdressbookService 
