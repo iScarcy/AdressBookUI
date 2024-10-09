@@ -17,10 +17,8 @@ const _adressbookReducer = createReducer(
         }
     }),
     on(newcontactsucess, (state, action) => {
-       let newContact = [...state.contacts];
-       newContact.push(action.contact);
         return {
-            contacts: newContact,
+            contacts: [...state.contacts, action.contact],
             errormessage: ""
         }
     })

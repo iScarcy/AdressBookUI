@@ -12,6 +12,7 @@ import { adressbookReducer } from './shared/store/adressbook.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppEffects } from './shared/store/Common/app.effects';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MaterialModule,   
     StoreModule.forRoot({addressbook:adressbookReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot(AdressbookEffects),
+    EffectsModule.forRoot([AdressbookEffects, AppEffects]),
     AppRoutingModule,
     BrowserAnimationsModule
   ],

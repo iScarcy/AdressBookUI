@@ -13,6 +13,7 @@ import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { DialogData } from 'src/app/interfaces/IDialogData';
 import { Store } from '@ngrx/store';
 import { getcontact } from 'src/app/shared/store/adressbook.selectors';
+import { newcontact } from 'src/app/shared/store/adressbook.actions';
 
 @Component({
   selector: 'app-adressbook-dialog',
@@ -94,15 +95,19 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   }
 
   save():void{
-    
+   
     if(this.FC_nome.valid ){
 
         console.log("data.id:" + this.data.id);
         
         if(this.data.id!="")
           console.log("salvo")
-        else 
+        else {
           console.log("inserisco")
+          this.store.dispatch(newcontact({contact:this.contatto!}));
+          this.dialogRef.close();
+        }
+          
       }
   }
 

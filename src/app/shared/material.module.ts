@@ -14,6 +14,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,7 +34,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatRadioModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
