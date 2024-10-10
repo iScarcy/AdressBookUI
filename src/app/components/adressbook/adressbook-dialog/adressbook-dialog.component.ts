@@ -52,7 +52,15 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   ){ 
     if(this.data.id!=''){
         this.store.select(getcontact(this.data.id)).subscribe(element => {
-          this.contatto = element;    
+          this.contatto!.id   = element!.id ;    
+          this.contatto!.nome = element!.nome ; 
+          this.contatto!.cognome = element!.cognome ;    
+          this.contatto!.dataNascita = element!.dataNascita ; 
+          this.contatto!.luogoNascita = element!.luogoNascita ; 
+          this.contatto!.email = element!.email ; 
+          this.contatto!.sesso = element!.sesso ; 
+          this.contatto!.tel = element!.tel ; 
+          this.contatto!.cell = element!.cell ; 
         })
     }
   }
@@ -98,7 +106,7 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
    
     if(this.FC_nome.valid ){
 
-       debugger;
+      
         
         if(this.data.id!=""){
           console.log("salvo")
