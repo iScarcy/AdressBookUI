@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./adressbook.state";
-import { editcontactsucess, loadcontactdetail, loadcontacts, loadcontactsfail, loadcontactssuccess, newcontactsucess } from "./adressbook.actions";
+import { deletecontactsucess, editcontactsucess, loadcontactdetail, loadcontacts, loadcontactsfail, loadcontactssuccess, newcontactsucess } from "./adressbook.actions";
 
 const _adressbookReducer = createReducer(
     initialState,
@@ -27,6 +27,15 @@ const _adressbookReducer = createReducer(
         const _newdata = state.contacts.map(o => {
             return o.id == action.contact.id ? action.contact : o
         })
+
+        return {
+            contacts: _newdata,
+            errormessage: ""
+        }
+    }),
+    on(deletecontactsucess, (state, action) => {
+       
+        const _newdata = state.contacts.filter(c => c.id!==action.id);
 
         return {
             contacts: _newdata,

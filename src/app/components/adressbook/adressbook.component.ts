@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { IContact } from 'src/app/interfaces/IContact';
-import { loadcontacts } from 'src/app/shared/store/adressbook.actions';
+import { deletecontact, loadcontacts } from 'src/app/shared/store/adressbook.actions';
 import { getcontact, getcontactslist } from 'src/app/shared/store/adressbook.selectors';
 import { AdressbookDialogComponent } from './adressbook-dialog/adressbook-dialog.component';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -54,5 +54,11 @@ export class AdressbookComponent implements OnInit{
       
       let dialogRef = this.dialog.open(AdressbookDialogComponent, config); 
         
+  }
+
+  deleteFunction(id:string, name:string){
+    if(confirm("Sicuro di voler eliminare contatto di " + name +"?")){
+      this.store.dispatch(deletecontact({id}))
+    }
   }
 }

@@ -29,9 +29,10 @@
             </ng-container>
             
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Details </th>
+                <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element"> 
-                    <button mat-raised-button color="primary" (click)="this.openDetailDialog(element.id)">Details</button>                     
+                    <button mat-raised-button color="basic" (click)="this.openDetailDialog(element.id)">Edit</button>                     
+                    <button mat-raised-button color="primary" (click)="this.deleteFunction(element.id, element.nome + ' ' +element.cognome)">Delete</button>                     
                 </td>
             </ng-container>
 

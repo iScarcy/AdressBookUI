@@ -16,6 +16,11 @@ export const EDIT_CONTACT='[Adressbook page] edit contact';
 export const EDIT_CONTACT_SUCCESS='[Adressbook page] edit contact SUCCESS';
 export const EDIT_CONTACT_FAIL='[Adressbook page] edit contact FAIL';
 
+export const DELETE_CONTACT='[Adressbook page] delete contact';
+export const DELETE_CONTACT_SUCCESS='[Adressbook page] delete contact SUCCESS';
+export const DELETE_CONTACT_FAIL='[Adressbook page] delete contact FAIL';
+
+
 export const loadcontacts=createAction(LOAD_CONTACTS)
 export const loadcontactssuccess=createAction(LOAD_CONTACTS_SUCCESS, props<{contacts:IContact[]}>())
 export const loadcontactsfail=createAction(LOAD_CONTACTS_FAIL, props<{errormessage:string}>())
@@ -32,4 +37,10 @@ export const newcontactfail=createAction(NEW_CONTACT_FAIL, props<{errormessage:s
 export const editcontact=createAction(EDIT_CONTACT, props<{contact:IContact}>());
 export const editcontactsucess=createAction(EDIT_CONTACT_SUCCESS, props<{contact:IContact}>());
 export const editcontactfail=createAction(EDIT_CONTACT_FAIL, props<{errormessage:string}>())
+
+ 
+export const deletecontact=createAction(DELETE_CONTACT, props<{id:string}>());
+export const deletecontactsucess=createAction(DELETE_CONTACT_SUCCESS, props<{id:string}>());
+export const deletecontactfail=createAction(DELETE_CONTACT_FAIL, props<{errormessage:string}>())
+ 
 

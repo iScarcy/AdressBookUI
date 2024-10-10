@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects"; 
 import { AdressbookService } from "src/app/services/adressbook.service";
-import { editcontact, editcontactsucess, LOAD_CONTACTS, loadcontacts, loadcontactsfail, loadcontactssuccess, NEW_CONTACT, newcontact, newcontactfail, newcontactsucess } from "./adressbook.actions";
+import { deletecontact, deletecontactsucess, editcontact, editcontactsucess, LOAD_CONTACTS, loadcontacts, loadcontactsfail, loadcontactssuccess, NEW_CONTACT, newcontact, newcontactfail, newcontactsucess } from "./adressbook.actions";
 import { catchError, exhaustMap, map, of, switchMap } from "rxjs";
 import { IContact } from "src/app/interfaces/IContact";
 import { IContactRequest } from "src/app/interfaces/IContactRequest";
-import { showalert } from "./Common/App.Action";
+import { showalert } from "./Common/app.action";
 
 @Injectable()
 export class AdressbookEffects {
@@ -74,6 +74,22 @@ export class AdressbookEffects {
             )
         ); 
     
+    deleteConcact$ = createEffect(() => 
+        this.action$.pipe(
+            ofType(deletecontact),
+            switchMap((data) => {
+                debugger;
+                return this.addressbookService.deleteContact(data.id).pipe(
+                    switchMap(() => {
+                        return of(deletecontactsucess({id:data.id}),
+                        showalert({message:'Delete success',resulttype: 'pass'}))
+                    }),
+                    catchError((_error)=>of(showalert({message:'Faild to delete contact',resulttype: 'fail'})))
+                );
+                })
+            )
+        ); 
+     
     constructor(
         private action$: Actions,
         private addressbookService: AdressbookService 
