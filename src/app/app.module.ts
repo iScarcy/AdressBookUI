@@ -24,7 +24,14 @@ import { AppEffects } from './shared/store/Common/app.effects';
     BrowserModule,
     HttpClientModule,
     MaterialModule,   
-    StoreModule.forRoot({addressbook:adressbookReducer}),
+    StoreModule.forRoot({addressbook:adressbookReducer},{
+      runtimeChecks:{
+        strictStateImmutability:true,
+        strictActionImmutability:true,
+        strictActionSerializability: true,
+        strictStateSerializability: true
+      }
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([AdressbookEffects, AppEffects]),
     AppRoutingModule,
