@@ -1,10 +1,11 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { IContact } from '../interfaces/IContact';
 import { baseAdressBookApiUrl } from '../app.constant';
 import { map, Observable } from 'rxjs';
 import { IContactResponse } from '../interfaces/IContactResponse';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,13 +72,11 @@ export class AdressbookService {
 
   }
 
-  deleteContact(id:string):Observable<boolean>{
+  deleteContact(id:string){
 
-    let success:boolean = false;
+  
     let adressBookServiceUrl: string = `${baseAdressBookApiUrl}AdressBook?Id=${id}`;
-    return this._httpClient.delete<HttpResponse<any>>(adressBookServiceUrl).pipe(
-      map(resp => (resp.status===200 || resp.status === 202))
-    )
+    return this._httpClient.delete<HttpResponse<string>>(adressBookServiceUrl)
 
   }
 }

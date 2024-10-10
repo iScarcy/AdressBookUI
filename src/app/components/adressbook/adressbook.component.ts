@@ -57,6 +57,7 @@ export class AdressbookComponent implements OnInit{
   }
 
   deleteFunction(id:string, name:string){
+   console.log("id:"+id)
     if(confirm("Sicuro di voler eliminare contatto di " + name +"?")){
       this.store.dispatch(deletecontact({id}))
     }

@@ -52,7 +52,7 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   ){ 
     if(this.data.id!=''){
         this.store.select(getcontact(this.data.id)).subscribe(element => {
-          this.contatto!.id   = element!.id ;    
+          this.contatto!.id  = this.data.id ;    
           this.contatto!.nome = element!.nome ; 
           this.contatto!.cognome = element!.cognome ;    
           this.contatto!.dataNascita = element!.dataNascita ; 

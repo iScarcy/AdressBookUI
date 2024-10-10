@@ -5,3 +5,7 @@
         align-items: flex-start;      
        
 }
+
+.green-snackbar{
+        color:green !important;
+}

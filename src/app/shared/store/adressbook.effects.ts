@@ -75,16 +75,20 @@ export class AdressbookEffects {
         ); 
     
     deleteConcact$ = createEffect(() => 
+        
         this.action$.pipe(
             ofType(deletecontact),
             switchMap((data) => {
-                debugger;
-                return this.addressbookService.deleteContact(data.id).pipe(
-                    switchMap(() => {
-                        return of(deletecontactsucess({id:data.id}),
+               
+                var id:string=data.id;
+                return this.addressbookService.deleteContact(id).pipe(
+                    exhaustMap((test) => {
+                        console.log(data);
+                        console.log(test);
+                        return of(deletecontactsucess({id:id}),
                         showalert({message:'Delete success',resulttype: 'pass'}))
                     }),
-                    catchError((_error)=>of(showalert({message:'Faild to delete contact',resulttype: 'fail'})))
+                    catchError((_error)=> { console.log(_error); return of(showalert({message:'Faild to delete contact',resulttype: 'fail'}))})
                 );
                 })
             )
