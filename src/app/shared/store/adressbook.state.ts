@@ -4,4 +4,7 @@ import { IContact } from "src/app/interfaces/IContact";
 
 export const adressbookAdopter=createEntityAdapter<IContact>()
 
-export const adressbookState:IAdressBookModel=adressbookAdopter.getInitialState();
+export const adressbookState:IAdressBookModel=adressbookAdopter.getInitialState({
+    isloading:false,
+    errormessage:''
+});
