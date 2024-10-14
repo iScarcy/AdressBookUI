@@ -1,3 +1,4 @@
+import { Update } from "@ngrx/entity";
 import {  createAction, props } from "@ngrx/store";
 import { IContact } from "src/app/interfaces/IContact"; 
 export const LOAD_CONTACTS='[Adressbook page] load contacts';
@@ -35,7 +36,7 @@ export const newcontactfail=createAction(NEW_CONTACT_FAIL, props<{errormessage:s
 
 
 export const editcontact=createAction(EDIT_CONTACT, props<{contact:IContact}>());
-export const editcontactsucess=createAction(EDIT_CONTACT_SUCCESS, props<{contact:IContact}>());
+export const editcontactsucess=createAction(EDIT_CONTACT_SUCCESS, props<{contact:Update<IContact>}>());
 export const editcontactfail=createAction(EDIT_CONTACT_FAIL, props<{errormessage:string}>())
 
  

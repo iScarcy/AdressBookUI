@@ -33,6 +33,7 @@ import { editcontact, newcontact } from 'src/app/shared/store/adressbook.actions
   styleUrls: ['./adressbook-dialog.component.css']
 })
 export class AdressbookDialogComponent implements OnInit, OnDestroy  {
+ 
   contatto:IContact | undefined = {
     id: '',
     nome: '',
@@ -52,15 +53,17 @@ export class AdressbookDialogComponent implements OnInit, OnDestroy  {
   ){ 
     if(this.data.id!=''){
         this.store.select(getcontact(this.data.id)).subscribe(element => {
-          this.contatto!.id  = this.data.id ;    
-          this.contatto!.nome = element!.nome ; 
+            
+          this.contatto =  Object.assign({}, element);
+        /*  this.contatto!.id  = x ;    
+          this.contatto!.nome = element!.nome  ; 
           this.contatto!.cognome = element!.cognome ;    
           this.contatto!.dataNascita = element!.dataNascita ; 
           this.contatto!.luogoNascita = element!.luogoNascita ; 
           this.contatto!.email = element!.email ; 
           this.contatto!.sesso = element!.sesso ; 
           this.contatto!.tel = element!.tel ; 
-          this.contatto!.cell = element!.cell ; 
+          this.contatto!.cell = element!.cell ; */
         })
     }
   }

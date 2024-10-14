@@ -32,7 +32,7 @@ export class AdressbookComponent implements OnInit{
     
     this.store.select(getcontactslist).subscribe(list =>{
       this.contactsList = list;
-      console.log( this.contactsList);
+ 
       this.datasource = new MatTableDataSource<IContact>(this.contactsList);
 
       this.datasource.paginator = this.paginator;

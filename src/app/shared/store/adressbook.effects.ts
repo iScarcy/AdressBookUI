@@ -6,6 +6,7 @@ import { catchError, exhaustMap, map, of, switchMap } from "rxjs";
 import { IContact } from "src/app/interfaces/IContact";
 import { IContactRequest } from "src/app/interfaces/IContactRequest";
 import { showalert } from "./Common/app.action";
+import { Update } from "@ngrx/entity";
 
 @Injectable()
 export class AdressbookEffects {
@@ -65,7 +66,13 @@ export class AdressbookEffects {
                     tel:action.contact.tel,
                     cell:action.contact.cell}).pipe(
                     switchMap((data) => {
-                        return of(editcontactsucess({contact: data}),
+                       
+                        const updaterecord:Update<IContact>={
+                            id: action.contact.id,
+                            changes:action.contact
+                        }
+
+                        return of(editcontactsucess({contact: updaterecord}),
                         showalert({message:'Update success',resulttype: 'pass'}))
                     }),
                     catchError((_error)=>of(showalert({message:'Faild to update contact',resulttype: 'fail'})))
