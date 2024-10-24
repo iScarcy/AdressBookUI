@@ -17,5 +17,5 @@ export const getcontact = (id: string) =>
 export const getcontact = (id: string) =>
     createSelector(selectedentities, (state) => state[id])
 
-
+export const getIsLoading = createSelector(getadressbookstate, (state) => state.isloading)
 

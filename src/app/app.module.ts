@@ -13,12 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppEffects } from './shared/store/Common/app.effects';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,   
-    AdressbookComponent 
+    AdressbookComponent, LoadingComponent 
   ],
   imports: [
     BrowserModule,
