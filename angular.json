@@ -13,12 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/adress-book",
+            "outputPath": "dist/adressbook",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
+            "baseHref":"/adressbook/",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
